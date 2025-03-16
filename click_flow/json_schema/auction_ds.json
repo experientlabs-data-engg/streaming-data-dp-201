@@ -1,0 +1,397 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Auction",
+  "description": "JSON schema for auction.proto",
+  "type": "object",
+  "definitions": {
+    "TransactionSummaryKey": {
+      "type": "object",
+      "properties": {
+        "bidder_id": { "type": "integer", "format": "uint64" },
+        "placement_id": { "type": "integer", "format": "uint64" },
+        "available_deals": {
+          "type": "array",
+          "items": { "type": "integer", "format": "uint64" }
+        },
+        "status_code": { "type": "integer", "format": "uint32" },
+        "has_bid": { "type": "boolean" },
+        "has_buyer_uid": { "type": "boolean" },
+        "country_code": { "type": "string" },
+        "platform": { "$ref": "#/definitions/Platform" },
+        "device_type": { "type": "string" },
+        "interstitial": { "type": "boolean" },
+        "has_daid": { "type": "boolean" },
+        "bid_type": { "type": "string", "enum": ["CPC", "CPM", "CPV", "CPP"] },
+        "is_control_request": { "type": "boolean" },
+        "request_format": { "type": "string", "enum": ["BANNER", "VIDEO", "NATIVE_BANNER", "NATIVE_VIDEO"] },
+        "throttled_deals": {
+          "type": "array",
+          "items": { "type": "integer", "format": "uint64" }
+        },
+        "request_formats": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["BANNER", "VIDEO", "NATIVE_BANNER", "NATIVE_VIDEO"] },
+          "deprecated": true
+        },
+        "has_criteo_id": { "type": "boolean" },
+        "has_liveramp_idl_id": { "type": "boolean" },
+        "supply_implementation_type": { "type": "string", "enum": ["COP", "PREBID_JS", "PREBID_SERVER", "EBDA", "TAM", "ORTB", "VAST_TAGS"] }
+      }
+    },
+    "TransactionSummaryCount": {
+      "type": "object",
+      "properties": {
+        "key": { "$ref": "#/definitions/TransactionSummaryKey" },
+        "ad_server_id": { "type": "integer", "format": "uint32" },
+        "min_page_view_time": { "type": "integer", "format": "uint64" },
+        "max_page_view_time": { "type": "integer", "format": "uint64" },
+        "count": { "type": "integer", "format": "uint32" },
+        "request_size_sum": { "type": "integer", "format": "uint64" }
+      },
+      "required": ["key", "ad_server_id", "min_page_view_time", "max_page_view_time", "count"]
+    },
+    "BidResponseSampleKey": {
+      "type": "object",
+      "properties": {
+        "bidder_id": { "type": "integer", "format": "uint64" },
+        "seat_id": { "type": "string" },
+        "partner_creative_id": { "type": "string" }
+      },
+      "required": ["bidder_id"]
+    },
+    "BidResponseSample": {
+      "type": "object",
+      "properties": {
+        "key": { "$ref": "#/definitions/BidResponseSampleKey" },
+        "ad_server_id": { "type": "integer", "format": "uint32" },
+        "page_view_time": { "type": "integer", "format": "uint64" },
+        "page_view_id": { "type": "integer", "format": "uint64" },
+        "json_response": { "type": "string" },
+        "has_bid": { "type": "boolean" }
+      },
+      "required": ["key", "ad_server_id", "page_view_time", "page_view_id"]
+    },
+    "RequestResponseSample": {
+      "type": "object",
+      "properties": {
+        "publisher_id": { "type": "integer", "format": "uint64" },
+        "placement_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "ad_server_id": { "type": "integer", "format": "uint32" },
+        "page_view_id": { "type": "integer", "format": "uint64" },
+        "page_view_time": { "type": "integer", "format": "uint64" },
+        "country_code": { "type": "string" },
+        "platform": { "$ref": "#/definitions/Platform" },
+        "device_type": { "type": "string" },
+        "has_buyer_uid": { "type": "boolean" },
+        "bidder_id": { "type": "integer", "format": "uint64" },
+        "status_code": { "type": "integer", "format": "uint32" },
+        "response_time_millis": { "type": "integer", "format": "uint32" },
+        "json_request": { "type": "string" },
+        "json_response": { "type": "string" },
+        "has_daid": { "type": "boolean" },
+        "rtb_partner_id": {
+          "type": "array",
+          "items": { "type": "integer", "format": "uint64" }
+        },
+        "ad_server_metadata": { "type": "string" },
+        "extended_id_source": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "creative_config_json": { "type": "string" },
+        "processing_details_json": { "type": "string" },
+        "request_metadata_json": { "type": "string" },
+        "supply_implementation_type": { "type": "string", "enum": ["COP", "PREBID_JS", "PREBID_SERVER", "EBDA", "TAM", "ORTB", "VAST_TAGS"] },
+        "user_data_segment": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "segtax": { "type": "integer" },
+              "segclass": { "type": "string" },
+              "segment_ids": { "type": "array", "items": { "type": "integer" } }
+            }
+          }
+        }
+      },
+      "required": ["ad_server_id", "page_view_id", "page_view_time"]
+    },
+    "AuctionLog": {
+      "type": "object",
+      "properties": {
+        "key_info": { "$ref": "#/definitions/KeyInfo" },
+        "timestamp": { "type": "integer", "format": "int64" },
+        "winners": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/WinNoticeLog" }
+        },
+        "transactions": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/BidTransactionLog" }
+        },
+        "business_rule_experiment_id": { "type": "integer", "format": "int64", "deprecated": true },
+        "business_rule_traffic_id": { "type": "integer", "format": "int64" },
+        "floor_traffic_id": { "type": "integer", "format": "int64" },
+        "floor_traffic_allocation_percent": { "type": "number" },
+        "floor_traffic_logging_sample_percent": { "type": "number" },
+        "throttled_impressions": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ThrottledImpressionLog" }
+        },
+        "supply_implementation_type": { "type": "string", "enum": ["COP", "PREBID_JS", "PREBID_SERVER", "EBDA", "TAM", "ORTB", "VAST_TAGS"] },
+        "id_test_record": { "$ref": "#/definitions/IdTestRecord" }
+      }
+    },
+    "KeyInfo": {
+      "type": "object",
+      "properties": {
+        "ad_server_id": { "type": "integer", "format": "int32" },
+        "auction_id": { "type": "string" },
+        "publisher_id": { "type": "integer", "format": "int64" },
+        "page_view_time": { "type": "integer", "format": "int64" },
+        "page_view_id": { "type": "integer", "format": "int64" },
+        "log_id": { "type": "string", "format": "byte" },
+        "device": { "$ref": "#/definitions/Device" },
+        "location": { "$ref": "#/definitions/Location" },
+        "referrer": { "type": "string" },
+        "has_daid": { "type": "boolean" },
+        "mapped_inventory_verticals": {
+          "type": "array",
+          "items": { "type": "integer", "format": "uint32" }
+        }
+      }
+    },
+    "BidTransactionLog": {
+      "type": "object",
+      "properties": {
+        "bidderId": { "type": "integer", "format": "int64" },
+        "request": { "$ref": "#/definitions/BidRequestLog" },
+        "response": { "$ref": "#/definitions/BidResponseLog" }
+      }
+    },
+    "BidRequestLog": {
+      "type": "object",
+      "properties": {
+        "request_id": { "type": "string" },
+        "buyeruid": { "type": "string", "deprecated": true },
+        "imp": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ImpressionLog" }
+        },
+        "is_controlrequest": { "type": "boolean" },
+        "has_buyer_uid": { "type": "boolean" }
+      },
+      "required": ["request_id"]
+    },
+    "ImpressionLog": {
+      "type": "object",
+      "properties": {
+        "impression_id": { "type": "integer", "format": "int64" },
+        "placement_id": { "type": "integer", "format": "int64" },
+        "available_deals": {
+          "type": "array",
+          "items": { "type": "integer", "format": "int64" }
+        },
+        "interstitial": { "type": "boolean" },
+        "request_format": { "type": "string", "enum": ["BANNER", "VIDEO", "NATIVE_BANNER", "NATIVE_VIDEO"] },
+        "request_formats": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["BANNER", "VIDEO", "NATIVE_BANNER", "NATIVE_VIDEO"] },
+          "deprecated": true
+        },
+        "outgoing_bid_floor": { "type": "number" },
+        "deals": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/PmpDeal" }
+        },
+        "throttled_deals": {
+          "type": "array",
+          "items": { "type": "integer", "format": "int64" }
+        },
+        "eCpm_floor": { "type": "number" },
+        "viewability": { "type": "number" },
+        "playRate": { "type": "number" },
+        "ctr": { "type": "number" },
+        "external_floor": { "type": "number" },
+        "floor_traffic_group_detail_id": { "type": "integer", "format": "uint64" },
+        "floor_experiment_group_id": { "type": "integer", "format": "uint64" },
+        "floor_experiment_id": { "type": "integer", "format": "uint64" },
+        "floor_experiment_detailid": { "type": "integer", "format": "uint64" },
+        "video_placement_type": { "type": "string", "enum": ["UNDEFINED_VIDEO_PLACEMENT", "IN_STREAM_PLACEMENT", "IN_BANNER_PLACEMENT", "IN_ARTICLE_PLACEMENT", "IN_FEED_PLACEMENT", "FLOATING_PLACEMENT"] },
+        "floor_status": { "type": "string", "enum": ["FLOOR_NOT_APPLICABLE", "FLOOR_SUCCESS", "INVALID_FLOOR_EXPERIMENT", "NO_EXPERIMENT_RULES_MATCHED", "PUBLISHER_DISALLOWS_SMART_FLOORS", "PLACEMENT_PUB_FLOOR_MARGIN_OVERRIDE", "AD_SERVER_DISALLOWS_SMART_FLOORS", "DEAL_DISALLOWS_SMART_FLOORS"] },
+        "ecpm_outgoing_bid_floor": { "type": "number" },
+        "floor_experiment_group_allocation_traffic_allocation_percent": { "type": "number" },
+        "ad_position": { "type": "string" },
+        "exchange_cost": { "type": "number", "deprecated": true },
+        "gross_exchange_cost": { "type": "number", "deprecated": true }
+      },
+      "required": ["impression_id"]
+    },
+    "BidResponseLog": {
+      "type": "object",
+      "properties": {
+        "latency_ms": { "type": "integer", "format": "int64" },
+        "error": { "type": "string" },
+        "status_code": { "type": "integer", "format": "int32" },
+        "bid_results": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/BidResult" }
+        },
+        "response2_l": { "$ref": "#/definitions/BidResponse_2_1" },
+        "response2_3": { "$ref": "#/definitions/BidResponse_2_3" },
+        "response2_3_Json": { "$ref": "#/definitions/BidResponse_2_3_Json" },
+        "nbr": { "type": "integer", "format": "int32" }
+      }
+    },
+    "BidResult": {
+      "type": "object",
+      "properties": {
+        "impression_id": { "type": "integer", "format": "int64" },
+        "seat_id": { "type": "string" },
+        "bid_id": { "type": "string" },
+        "status_code": { "type": "integer", "format": "int32" },
+        "error": { "type": "string", "deprecated": true },
+        "bid_type": { "type": "string", "enum": ["CPC", "CPM", "CPV", "CPP"] },
+        "bid_floor": { "type": "number" },
+        "status_codes": {
+          "type": "array",
+          "items": { "type": "integer", "format": "int32" }
+        },
+        "advertiser_name": { "type": "string" },
+        "agency_name": { "type": "string" },
+        "agency_id": { "type": "string" },
+        "category_overrides": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "blocking_publisher_control_id": { "type": "integer", "format": "int64" },
+        "associated_publisher_control_ids": {
+          "type": "array",
+          "items": { "type": "integer", "format": "int64" }
+        },
+        "publisher_control_id_for_bid_floor": { "type": "integer", "format": "int64" },
+        "internal_campaign_id": { "type": "integer", "format": "int64" },
+        "bundle_id": { "type": "string" },
+        "business_rule_experiment_entry_id": { "type": "integer", "format": "int64" },
+        "cost_holdback": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer" },
+              "type": { "type": "string" },
+              "value": { "type": "number" }
+            },
+            "required": ["id", "type", "value"]
+          }
+        },
+        "business_rule_experiment_id": { "type": "integer", "format": "int64" },
+        "margin_type": { "$ref": "#/definitions/MarginType" },
+        "smart_margin_type": { "type": "string", "enum": ["MAX_MARGIN_FIXED", "MAX_MARGIN_CAPPED", "SMART_MARGIN_CAPPED", "SMART_MARGIN_UNCAPPED"] },
+        "exchange_cost": { "type": "number" },
+        "gross_exchange_cost": { "type": "number" }
+      }
+    },
+    "WinNoticeLog": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "success": { "type": "boolean" },
+        "error_msg": { "type": "string" },
+        "bidder_id": { "type": "integer", "format": "int64" },
+        "auction_id": { "type": "string" },
+        "seat_id": { "type": "string" },
+        "bid_id": { "type": "string" },
+        "timestamp": { "type": "integer", "format": "int64" },
+        "latency_ms": { "type": "integer", "format": "int64" },
+        "cost": { "type": "number" },
+        "seatBidId": { "type": "string" },
+        "imp_id": { "type": "string" }
+      }
+    },
+    "CreativeRecord": {
+      "type": "object",
+      "properties": {
+        "id": { "$ref": "#/definitions/CreativeRecordId" },
+        "max_time": { "type": "integer", "format": "int64" },
+        "adm2_1": { "$ref": "#/definitions/MyCreative" },
+        "adm2_3": { "type": "string" }
+      },
+      "required": ["id"]
+    },
+    "CreativeRecordId": {
+      "type": "object",
+      "properties": {
+        "bidder_id": { "type": "integer", "format": "int64" },
+        "creative_id": { "type": "string" },
+        "campaign_id": { "type": "string" },
+        "advertiser_id": { "type": "string" }
+      },
+      "required": ["bidder_id"]
+    },
+    "PmpDeal": {
+      "type": "object",
+      "properties": {
+        "deal_campaign_id": { "type": "integer", "format": "int64" },
+        "deal_floor": { "type": "number" },
+        "floor_traffic_group_detail_id": { "type": "integer", "format": "uint64" },
+        "floor_experiment_group_id": { "type": "integer", "format": "uint64" },
+        "floor_experiment_id": { "type": "integer", "format": "uint64" },
+        "floor_experiment_detailid": { "type": "integer", "format": "uint64" },
+        "floor_status": { "type": "string", "enum": ["FLOOR_NOT_APPLICABLE", "FLOOR_SUCCESS", "INVALID_FLOOR_EXPERIMENT", "NO_EXPERIMENT_RULES_MATCHED", "PUBLISHER_DISALLOWS_SMART_FLOORS", "PLACEMENT_PUB_FLOOR_MARGIN_OVERRIDE", "AD_SERVER_DISALLOWS_SMART_FLOORS", "DEAL_DISALLOWS_SMART_FLOORS"] },
+        "bid_floor": { "type": "number" },
+        "smart_floor": { "type": "number" },
+        "adjusted_impression_floor": { "type": "number" }
+      }
+    },
+    "ThrottledImpressionLog": {
+      "type": "object",
+      "properties": {
+        "impression_id": { "type": "integer", "format": "uint64" },
+        "placement_id": { "type": "integer", "format": "uint64" },
+        "interstitial": { "type": "boolean" },
+        "is_control_request": { "type": "boolean" },
+        "throttled_bidders": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ThrottledBidderLog" }
+        }
+      }
+    },
+    "ThrottledBidderLog": {
+      "type": "object",
+      "properties": {
+        "bidder_id": { "type": "integer", "format": "uint64" },
+        "has_buyer_uid": { "type": "boolean" },
+        "bid_type": { "type": "string", "enum": ["CPC", "CPM", "CPV", "CPP"] },
+        "available_deals": {
+          "type": "array",
+          "items": { "type": "integer", "format": "uint64" }
+        },
+        "request_format": { "type": "string", "enum": ["BANNER", "VIDEO", "NATIVE_BANNER", "NATIVE_VIDEO"] },
+        "status_code": { "type": "integer", "format": "uint32" }
+      }
+    }
+  },
+  "properties": {
+    "TransactionSummaryKey": { "$ref": "#/definitions/TransactionSummaryKey" },
+    "TransactionSummaryCount": { "$ref": "#/definitions/TransactionSummaryCount" },
+    "BidResponseSampleKey": { "$ref": "#/definitions/BidResponseSampleKey" },
+    "BidResponseSample": { "$ref": "#/definitions/BidResponseSample" },
+    "RequestResponseSample": { "$ref": "#/definitions/RequestResponseSample" },
+    "AuctionLog": { "$ref": "#/definitions/AuctionLog" },
+    "KeyInfo": { "$ref": "#/definitions/KeyInfo" },
+    "BidTransactionLog": { "$ref": "#/definitions/BidTransactionLog" },
+    "BidRequestLog": { "$ref": "#/definitions/BidRequestLog" },
+    "ImpressionLog": { "$ref": "#/definitions/ImpressionLog" },
+    "BidResponseLog": { "$ref": "#/definitions/BidResponseLog" },
+    "BidResult": { "$ref": "#/definitions/BidResult" },
+    "WinNoticeLog": { "$ref": "#/definitions/WinNoticeLog" },
+    "CreativeRecord": { "$ref": "#/definitions/CreativeRecord" },
+    "PmpDeal": { "$ref": "#/definitions/PmpDeal" },
+    "ThrottledImpressionLog": { "$ref": "#/definitions/ThrottledImpressionLog" },
+    "ThrottledBidderLog": { "$ref": "#/definitions/ThrottledBidderLog" }
+  }
+}

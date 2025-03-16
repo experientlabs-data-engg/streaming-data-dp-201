@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "TransactionSummaryKey": {
+      "type": "object",
+      "properties": {
+        "bidder_id": { "type": "integer" },
+        "placement_id": { "type": "integer" },
+        "available_deals": { "type": "array", "items": { "type": "integer" } },
+        "status_code": { "type": "integer" },
+        "has_bid": { "type": "boolean" },
+        "has_buyer_uid": { "type": "boolean" },
+        "country_code": { "type": "string" },
+        "platform": { "type": "string" },
+        "device_type": { "type": "string" },
+        "interstitial": { "type": "boolean" },
+        "has_daid": { "type": "boolean" },
+        "bid_type": { "type": "string" },
+        "is_control_request": { "type": "boolean" },
+        "request_format": { "type": "string" },
+        "throttled_deals": { "type": "array", "items": { "type": "integer" } },
+        "has_criteo_id": { "type": "boolean" },
+        "has_liveramp_idl_id": { "type": "boolean" },
+        "supply_implementation_type": { "type": "string" }
+      }
+    },
+    "TransactionSummaryCount": {
+      "type": "object",
+      "properties": {
+        "key": { "$ref": "#/properties/TransactionSummaryKey" },
+        "ad_server_id": { "type": "integer" },
+        "min_page_view_time": { "type": "integer" },
+        "max_page_view_time": { "type": "integer" },
+        "count": { "type": "integer" },
+        "request_size_sum": { "type": "integer" }
+      }
+    },
+    "AuctionLog": {
+      "type": "object",
+      "properties": {
+        "key_info": { "$ref": "#/properties/KeyInfo" },
+        "timestamp": { "type": "integer" },
+        "winners": { "type": "array", "items": { "$ref": "#/properties/WinNoticeLog" } },
+        "transactions": { "type": "array", "items": { "$ref": "#/properties/BidTransactionLog" } },
+        "business_rule_experiment_id": { "type": "integer" },
+        "business_rule_traffic_id": { "type": "integer" },
+        "floor_traffic_id": { "type": "integer" },
+        "floor_traffic_allocation_percent": { "type": "number" },
+        "floor_traffic_logging_sample_percent": { "type": "number" },
+        "throttled_impressions": { "type": "array", "items": { "$ref": "#/properties/ThrottledImpressionLog" } },
+        "supply_implementation_type": { "type": "string" },
+        "id_test_record": { "type": "object" }
+      }
+    },
+    "BidTransactionLog": {
+      "type": "object",
+      "properties": {
+        "bidderId": { "type": "integer" },
+        "request": { "$ref": "#/properties/BidRequestLog" },
+        "response": { "$ref": "#/properties/BidResponseLog" }
+      }
+    },
+    "BidRequestLog": {
+      "type": "object",
+      "properties": {
+        "request_id": { "type": "string" },
+        "buyeruid": { "type": "string" },
+        "imp": { "type": "array", "items": { "$ref": "#/properties/ImpressionLog" } },
+        "is_control_request": { "type": "boolean" },
+        "has_buyer_uid": { "type": "boolean" }
+      }
+    },
+    "BidResponseLog": {
+      "type": "object",
+      "properties": {
+        "latency_ms": { "type": "integer" },
+        "error": { "type": "string" },
+        "status_code": { "type": "integer" },
+        "bid_results": { "type": "array", "items": { "$ref": "#/properties/BidResult" } },
+        "nbr": { "type": "integer" }
+      }
+    },
+    "BidResult": {
+      "type": "object",
+      "properties": {
+        "impression_id": { "type": "integer" },
+        "seat_id": { "type": "string" },
+        "bid_id": { "type": "string" },
+        "status_code": { "type": "integer" },
+        "bid_floor": { "type": "number" },
+        "exchange_cost": { "type": "number" },
+        "gross_exchange_cost": { "type": "number" }
+      }
+    },
+    "WinNoticeLog": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "success": { "type": "boolean" },
+        "error_msg": { "type": "string" },
+        "bidder_id": { "type": "integer" },
+        "auction_id": { "type": "string" },
+        "seat_id": { "type": "string" },
+        "bid_id": { "type": "string" },
+        "timestamp": { "type": "integer" },
+        "latency_ms": { "type": "integer" },
+        "cost": { "type": "number" }
+      }
+    },
+    "ImpressionLog": {
+      "type": "object",
+      "properties": {
+        "impression_id": { "type": "integer" },
+        "ad_unit": { "type": "string" },
+        "timestamp": { "type": "integer" }
+      }
+    },
+    "ThrottledImpressionLog": {
+      "type": "object",
+      "properties": {
+        "impression_id": { "type": "integer" },
+        "throttle_reason": { "type": "string" }
+      }
+    },
+    "ThrottledBidderLog": {
+      "type": "object",
+      "properties": {
+        "bidder_id": { "type": "integer" },
+        "throttle_reason": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,686 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PageView",
+  "type": "object",
+  "properties": {
+    "PageViewRequest": {
+      "type": "object",
+      "properties": {
+        "sdk_type": { "type": "string" },
+        "dnt": { "type": "boolean" },
+        "placements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "placement_id": { "type": "string" },
+              "container_width_dip": { "type": "integer" },
+              "exchangePlacementId": { "type": "string" },
+              "external_floor": { "type": "number" },
+              "acceptable_sizes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "width": { "type": "integer" },
+                    "height": { "type": "integer" }
+                  },
+                  "required": ["width", "height"]
+                }
+              },
+              "interstitial": { "type": "boolean" },
+              "upstream_imp_id": { "type": "string" },
+              "rewarded": { "type": "boolean" },
+              "request_format": { "type": "string", "enum": ["BANNER", "VIDEO", "NATIVE_BANNER", "NATIVE_VIDEO"] },
+              "video_placement_type": { "type": "string", "enum": ["UNDEFINED_VIDEO_PLACEMENT", "IN_STREAM_PLACEMENT", "IN_BANNER_PLACEMENT", "IN_ARTICLE_PLACEMENT", "IN_FEED_PLACEMENT", "FLOATING_PLACEMENT"] },
+              "gpid": { "type": "string" },
+              "divid": { "type": "string" },
+              "video_attributes": {
+                "type": "object",
+                "properties": {
+                  "video_placement_type": { "type": "string", "enum": ["UNDEFINED_VIDEO_PLACEMENT", "IN_STREAM_PLACEMENT", "IN_BANNER_PLACEMENT", "IN_ARTICLE_PLACEMENT", "IN_FEED_PLACEMENT", "FLOATING_PLACEMENT"] },
+                  "video_api": { "type": "string", "enum": ["VPAID", "MRAID", "ORMMA", "OMID"] },
+                  "video_proto": { "type": "string", "enum": ["VAST_1_0", "VAST_2_0", "VAST_3_0", "VAST_4_0"] },
+                  "estimated_player_size_category": { "type": "string", "enum": ["EXTRA_SMALL", "SMALL", "MEDIUM", "LARGE"] },
+                  "skippability": { "type": "string", "enum": ["skippable", "nonskippable", "any"] },
+                  "startDelay": { "type": "string", "enum": ["MID_ROLL", "PRE_ROLL", "GENERIC_MID_ROLL", "GENERIC_POST_ROLL"] },
+                  "min_duration": { "type": "integer" },
+                  "max_duration": { "type": "integer" }
+                }
+              },
+              "request_formats": {
+                "type": "array",
+                "items": { "type": "string", "enum": ["BANNER", "VIDEO", "NATIVE_BANNER", "NATIVE_VIDEO"] }
+              },
+              "request_targeting_error": { "type": "boolean" },
+              "error_code": { "type": "array", "items": { "type": "string" } },
+              "idx": { "type": "integer", "default": 0 },
+              "impression_id": { "type": "integer" },
+              "postfix": { "type": "string" },
+              "original_placement_id": { "type": "string" },
+              "tagid": { "type": "string" },
+              "dfp_ad_unit_code": { "type": "string" },
+              "ad_position": { "type": "string" },
+              "pod_ad_parent_impression_id": { "type": "integer" }
+            },
+            "required": ["idx", "impression_id"]
+          }
+        },
+        "location_type": { "type": "string", "enum": ["IP", "WC3", "SDK", "GPS", "USER_DEFINED", "UPSTREAM_IP", "UNKNOWN"] },
+        "connection_type": { "type": "string", "enum": ["Cellular", "Wifi"] },
+        "isp": { "type": "string" },
+        "adserver_start_time": { "type": "integer" },
+        "page_view_time": { "type": "integer" },
+        "gmt_hour_offset_time_zone": { "type": "integer" },
+        "requested_host": { "type": "string" },
+        "request_id": { "type": "integer" },
+        "adserver_id": { "type": "integer" },
+        "proxy_id": { "type": "integer" },
+        "locale": { "type": "string" },
+        "language": { "type": "string" },
+        "apple_vendor_id": { "type": "string" },
+        "system_name": { "type": "string" },
+        "system_version": { "type": "string" },
+        "bundle_version_key": { "type": "string" },
+        "device_advertising_id": { "type": "string" },
+        "model": { "type": "string" },
+        "bundle_version": { "type": "string" },
+        "bundle_signature": { "type": "string" },
+        "bundle_identifier": { "type": "string" },
+        "ym_App_id": { "type": "string" },
+        "ads_rate": { "type": "number" },
+        "sdk_version": { "type": "string" },
+        "device_type": { "type": "string" },
+        "force_invalidation": { "type": "boolean" },
+        "is_secure": { "type": "boolean" },
+        "is_amp": { "type": "boolean" },
+        "environment_id": { "type": "integer" },
+        "placement_width_pixels": { "type": "integer" },
+        "placement_height_pixels": { "type": "integer" },
+        "offplatform_user_id": { "type": "string" },
+        "offplatform_source": { "type": "string" },
+        "is_prefetch": { "type": "boolean" },
+        "auction_id": { "type": "string" },
+        "macro_1": { "type": "string" },
+        "exchange_auction_id": { "type": "string" },
+        "is_app": { "type": "boolean" },
+        "app_name": { "type": "string" },
+        "app_keywords": { "type": "string" },
+        "app_content_url": { "type": "string" },
+        "dfp_ad_unit_codes": { "type": "string" },
+        "tag_ids": { "type": "string" },
+        "app_store_url": { "type": "string" },
+        "supply_source": { "type": "string", "enum": ["COP", "PREBID_JS", "PREBID_SERVER", "EBDA", "TAM", "ORTB"] },
+        "tmax": { "type": "integer" },
+        "omidon": { "type": "string" },
+        "omidpv": { "type": "string" },
+        "placements_exceeding_cap": { "type": "array", "items": { "type": "string" } },
+        "inventory_source": { "type": "string" },
+        "has_liveramp_ats_envelope": { "type": "boolean" },
+        "appOrSiteContent": {
+          "type": "object",
+          "properties": {
+            "episode": { "type": "integer" },
+            "title": { "type": "string" },
+            "series": { "type": "string" },
+            "season": { "type": "string" },
+            "lang": { "type": "string" },
+            "livestream": { "type": "boolean" },
+            "contentCategories": { "type": "array", "items": { "type": "string" } },
+            "genres": { "type": "array", "items": { "type": "string" } },
+            "producerNames": { "type": "array", "items": { "type": "string" } },
+            "channel": { "type": "string" },
+            "network": { "type": "string" }
+          }
+        },
+        "mapped_inventory_verticals": { "type": "array", "items": { "type": "integer" } },
+        "ad_pod_position": { "type": "integer" },
+        "key_value_pairs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": { "type": "string" },
+              "value": { "type": "string" }
+            },
+            "required": ["key", "value"]
+          }
+        },
+        "id5_partner_ids": { "type": "array", "items": { "type": "string" } },
+        "back_filled_id5_partner_ids": { "type": "array", "items": { "type": "string" } },
+        "is_publisher_throttling_control_request": { "type": "boolean" },
+        "is_publisher_request_throttled": { "type": "boolean" },
+        "upstream_request_properties": {
+          "type": "object",
+          "properties": {
+            "site_id": { "type": "string" },
+            "site_name": { "type": "string" },
+            "site_domain": { "type": "string" },
+            "app_domain": { "type": "string" },
+            "pub_content_categories": { "type": "array", "items": { "type": "string" } },
+            "site_content_categories": { "type": "array", "items": { "type": "string" } },
+            "app_content_categories": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "placementByImpressionId": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "placement_id": { "type": "string" },
+              "container_width_dip": { "type": "integer" },
+              "exchangePlacementId": { "type": "string" },
+              "external_floor": { "type": "number" },
+              "acceptable_sizes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "width": { "type": "integer" },
+                    "height": { "type": "integer" }
+                  },
+                  "required": ["width", "height"]
+                }
+              },
+              "interstitial": { "type": "boolean" },
+              "upstream_imp_id": { "type": "string" },
+              "rewarded": { "type": "boolean" },
+              "request_format": { "type": "string", "enum": ["BANNER", "VIDEO", "NATIVE_BANNER", "NATIVE_VIDEO"] },
+              "video_placement_type": { "type": "string", "enum": ["UNDEFINED_VIDEO_PLACEMENT", "IN_STREAM_PLACEMENT", "IN_BANNER_PLACEMENT", "IN_ARTICLE_PLACEMENT", "IN_FEED_PLACEMENT", "FLOATING_PLACEMENT"] },
+              "gpid": { "type": "string" },
+              "divid": { "type": "string" },
+              "video_attributes": {
+                "type": "object",
+                "properties": {
+                  "video_placement_type": { "type": "string", "enum": ["UNDEFINED_VIDEO_PLACEMENT", "IN_STREAM_PLACEMENT", "IN_BANNER_PLACEMENT", "IN_ARTICLE_PLACEMENT", "IN_FEED_PLACEMENT", "FLOATING_PLACEMENT"] },
+                  "video_api": { "type": "string", "enum": ["VPAID", "MRAID", "ORMMA", "OMID"] },
+                  "video_proto": { "type": "string", "enum": ["VAST_1_0", "VAST_2_0", "VAST_3_0", "VAST_4_0"] },
+                  "estimated_player_size_category": { "type": "string", "enum": ["EXTRA_SMALL", "SMALL", "MEDIUM", "LARGE"] },
+                  "skippability": { "type": "string", "enum": ["skippable", "nonskippable", "any"] },
+                  "startDelay": { "type": "string", "enum": ["MID_ROLL", "PRE_ROLL", "GENERIC_MID_ROLL", "GENERIC_POST_ROLL"] },
+                  "min_duration": { "type": "integer" },
+                  "max_duration": { "type": "integer" }
+                }
+              },
+              "request_formats": {
+                "type": "array",
+                "items": { "type": "string", "enum": ["BANNER", "VIDEO", "NATIVE_BANNER", "NATIVE_VIDEO"] }
+              },
+              "request_targeting_error": { "type": "boolean" },
+              "error_code": { "type": "array", "items": { "type": "string" } },
+              "idx": { "type": "integer", "default": 0 },
+              "impression_id": { "type": "integer" },
+              "postfix": { "type": "string" },
+              "original_placement_id": { "type": "string" },
+              "tagid": { "type": "string" },
+              "dfp_ad_unit_code": { "type": "string" },
+              "ad_position": { "type": "string" },
+              "pod_ad_parent_impression_id": { "type": "integer" }
+            },
+            "required": ["idx", "impression_id"]
+          }
+        },
+        "supply_implementation_type": { "type": "string", "enum": ["COP", "PREBID_JS", "PREBID_SERVER", "EBDA", "TAM", "ORTB", "VAST_TAGS"] },
+        "user_data_segment": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "segtax": { "type": "integer" },
+              "segclass": { "type": "string" },
+              "segment_ids": { "type": "array", "items": { "type": "integer" } }
+            }
+          }
+        },
+        "throttled_impression_ids": { "type": "array", "items": { "type": "integer" } },
+        "supply_chain_advertising_system_identifier": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "PageViewLog": {
+      "type": "object",
+      "properties": {
+        "impressions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "impression_id": { "type": "integer" },
+              "placement_id": { "type": "string" },
+              "originalPlacementId": { "type": "string" },
+              "error_code": { "type": "string" },
+              "rotation_scheme": { "type": "string" },
+              "creative_format_id": { "type": "integer" },
+              "postfix": { "type": "string" },
+              "tag": { "type": "string" },
+              "max_creative_count": { "type": "integer" },
+              "creative_count": { "type": "integer" },
+              "column_count": { "type": "integer" },
+              "control_ab_test_names": { "type": "array", "items": { "type": "string" } },
+              "creatives": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "creativeId": { "type": "integer" },
+                    "advertiserId": { "type": "integer" },
+                    "cost": { "type": "number" },
+                    "bidType": { "type": "string", "enum": ["CPC", "CPM", "CPV", "CPP"] },
+                    "learning": { "type": "boolean" },
+                    "categoryId": { "type": "integer" },
+                    "eCpm": { "type": "number" },
+                    "ctr": { "type": "number" },
+                    "productRecommendationStrategyId": { "type": "integer" },
+                    "productIds": { "type": "array", "items": { "type": "string" } },
+                    "adomain": { "type": "string" },
+                    "advertiser_cost": { "type": "number" },
+                    "rtbSeat": { "type": "string" },
+                    "creativeIndex": { "type": "integer" },
+                    "empLineItemId": { "type": "string" },
+                    "empAdvertiserId": { "type": "string" },
+                    "empOrderId": { "type": "string" },
+                    "empEnvironmentId": { "type": "string" },
+                    "empAdUnitId": { "type": "string" },
+                    "empTopLevelAdUnitId": { "type": "string" },
+                    "audienceTargetingOverrideSegmentId": { "type": "integer" },
+                    "empCreativeId": { "type": "string" },
+                    "partner_creative_id": { "type": "string" },
+                    "chosenCreativesize": {
+                      "type": "object",
+                      "properties": {
+                        "width": { "type": "integer" },
+                        "height": { "type": "integer" }
+                      },
+                      "required": ["width", "height"]
+                    },
+                    "empSiteId": { "type": "string" },
+                    "realtime_audience_segments": { "type": "array", "items": { "type": "integer" } },
+                    "useBillableEvent": { "type": "boolean" },
+                    "viewability": { "type": "number" },
+                    "playRate": { "type": "number" },
+                    "bidder_id": { "type": "integer" },
+                    "exchange_cost": { "type": "number" },
+                    "gross_exchange_cost": { "type": "number" },
+                    "internal_vpaid_tracking_enabled": { "type": "boolean" },
+                    "business_rule_experiment_entry_id": { "type": "integer" },
+                    "bidder_margin_override": { "type": "number" },
+                    "play_rate_prediction_model_category_id": { "type": "integer" },
+                    "default_margin": { "type": "number" },
+                    "margin_type": { "type": "string", "enum": ["DEFAULT", "ZERO", "DEAL", "BUSINESS_RULE_EXPERIMENT", "BIDDER", "DSP_SEAT", "BIDDER_PUBLISHER", "UP_BID", "PUBLISHER_FLOOR_MARGIN_OVERRIDE"] },
+                    "realtime_audience_segment_run_ids": { "type": "array", "items": { "type": "integer" } },
+                    "play_rate_prediction_model_run_id": { "type": "integer" },
+                    "external_ids": {
+                      "type": "object",
+                      "properties": {
+                        "line_item_id": { "type": "string" },
+                        "advertiser_id": { "type": "string" },
+                        "order_id": { "type": "string" },
+                        "creative_id": { "type": "string" },
+                        "environment_id": { "type": "string" },
+                        "ad_unit_id": { "type": "string" },
+                        "top_level_ad_unit_id": { "type": "string" },
+                        "site_id": { "type": "string" },
+                        "campaign_id": { "type": "string" },
+                        "publisher_id": { "type": "string" },
+                        "app_id": { "type": "string" },
+                        "domain": { "type": "string" },
+                        "sub_domain": { "type": "string" },
+                        "site_url": { "type": "string" },
+                        "insertion_order_id": { "type": "string" },
+                        "ad_id": { "type": "string" },
+                        "placement_id": { "type": "string" },
+                        "deal_id": { "type": "string" },
+                        "ad_size": { "type": "string" },
+                        "site_category": { "type": "string" }
+                      }
+                    },
+                    "partner_advertiser_name": { "type": "string" },
+                    "partner_agency_name": { "type": "string" },
+                    "partner_agency_id": { "type": "string" },
+                    "format_optimization_experiment_detailid": { "type": "integer" },
+                    "format_optimization_experiment_feature_set_priority_id": { "type": "integer" },
+                    "format_optimization_status": { "type": "string", "enum": ["NOT_APPLICABLE", "SUCCESS", "NO_RULES_MATCHED", "NO_VALID_FORMAT_FOUND", "NOT_ENABLED"] },
+                    "ds_research_info": { "type": "string" },
+                    "iab_categories": { "type": "array", "items": { "type": "string" } },
+                    "audience_targeting_sample_rate": { "type": "number" },
+                    "ctv_qr_code_config_id": { "type": "integer" },
+                    "bid_internal_auction_price": { "type": "number" },
+                    "advertiser_auction_macro_price": { "type": "number" },
+                    "exchange_post_auction_discount_id": { "type": "integer" },
+                    "applicable_margin": { "type": "number" },
+                    "cost_holdback": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "integer" },
+                          "type": { "type": "string" },
+                          "value": { "type": "number" }
+                        },
+                        "required": ["id", "type", "value"]
+                      }
+                    },
+                    "floor_traffic_group_detail_id": { "type": "integer" },
+                    "floor_experiment_group_id": { "type": "integer" },
+                    "floor_experiment_id": { "type": "integer" },
+                    "floor_experiment_detail_id": { "type": "integer" },
+                    "floor_status": { "type": "string", "enum": ["FLOOR_NOT_APPLICABLE", "FLOOR_SUCCESS", "INVALID_FLOOR_EXPERIMENT", "NO_EXPERIMENT_RULES_MATCHED", "PUBLISHER_DISALLOWS_SMART_FLOORS", "PLACEMENT_PUB_FLOOR_MARGIN_OVERRIDE", "AD_SERVER_DISALLOWS_SMART_FLOORS", "DEAL_DISALLOWS_SMART_FLOORS"] },
+                    "creative_config_collection_element_ids": { "type": "array", "items": { "type": "integer" } },
+                    "creative_format_config_collection_element_ids": { "type": "array", "items": { "type": "integer" } },
+                    "has_matched_user": { "type": "boolean" },
+                    "nformats_traffic_group_detail_id": { "type": "integer" },
+                    "nformats_experiment_group_id": { "type": "integer" },
+                    "nformats_experiment_id": { "type": "integer" },
+                    "nformats_experiment_detail_id": { "type": "integer" },
+                    "nformats_creative_status": { "type": "string", "enum": ["NFORMAT_CREATIVE_NOT_APPLICABLE", "NFORMAT_CREATIVE_NOT_ENABLED", "NFORMAT_CREATIVE_SUCCESS", "NFORMAT_CREATIVE_CONFIG_ELEMENTS_DUPLICATE_ERROR", "NFORMAT_CREATIVE_CONFIG_ELEMENTS_INVALID", "NFORMAT_CREATIVE_EXPERIMENT_INVALID", "NFORMAT_CREATIVE_EXPERIMENT_NO_RULES_MATCHED"] },
+                    "nformats_format_status": { "type": "string", "enum": ["NFORMAT_FORMAT_NOT_APPLICABLE", "NFORMAT_FORMAT_NOT_ENABLED", "NFORMAT_FORMAT_SUCCESS", "NFORMAT_FORMAT_CONFIG_ELEMENTS_DUPLICATE_ERROR", "NFORMAT_FORMAT_CONFIG_ELEMENTS_INVALID", "NFORMAT_FORMAT_EXPERIMENT_INVALID", "NFORMAT_FORMAT_EXPERIMENT_NO_RULES_MATCHED", "NFORMAT_FORMAT_CONFIG_ELEMENTS_COLLIDE_WITH_CREATIVE_ELEMENTS"] },
+                    "floor_experiment_group_allocation_traffic_allocation_percent": { "type": "number" },
+                    "creative_config_constraint_perumation_id": { "type": "array", "items": { "type": "integer" } },
+                    "creative_format_config_constraint_permutation_id": { "type": "array", "items": { "type": "integer" } },
+                    "noformats_experiment_group_allocation_traffic_allocation_percent": { "type": "number" },
+                    "adomains": { "type": "array", "items": { "type": "string" } },
+                    "has_fraud_sensor_tag": { "type": "boolean" },
+                    "duration": { "type": "integer" },
+                    "deal_floor_traffic_group_detail_id": { "type": "integer" },
+                    "deal_floor_experiment_group_id": { "type": "integer" },
+                    "deal_floor_experiment_id": { "type": "integer" },
+                    "deal_floor_experiment_detail_id": { "type": "integer" },
+                    "deal_floor_status": { "type": "string", "enum": ["FLOOR_NOT_APPLICABLE", "FLOOR_SUCCESS", "INVALID_FLOOR_EXPERIMENT", "NO_EXPERIMENT_RULES_MATCHED", "PUBLISHER_DISALLOWS_SMART_FLOORS", "PLACEMENT_PUB_FLOOR_MARGIN_OVERRIDE", "AD_SERVER_DISALLOWS_SMART_FLOORS", "DEAL_DISALLOWS_SMART_FLOORS"] },
+                    "business_rule_experiment_id": { "type": "integer" },
+                    "smart_margin_type": { "type": "string", "enum": ["MAX_MARGIN_FIXED", "MAX_MARGIN_CAPPED", "SMART_MARGIN_CAPPED", "SMART_MARGIN_UNCAPPED"] },
+                    "creative_inventory_targeting_id": { "type": "integer" },
+                    "creative_format_inventory_targeting_id": { "type": "integer" },
+                    "up_bidding_experiment": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "integer" },
+                        "dynamic_margin_target_id": { "type": "integer" },
+                        "minimum_effective_margin": { "type": "number" },
+                        "reduced_effective_margin": { "type": "number" },
+                        "exchange_cost_multiplier": { "type": "number" }
+                      }
+                    }
+                  }
+                }
+              },
+              "is_licensed_format": { "type": "boolean" },
+              "ab_test_names": { "type": "array", "items": { "type": "string" } },
+              "phantom_creatives": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "creativeId": { "type": "integer" },
+                    "advertiserId": { "type": "integer" },
+                    "cost": { "type": "number" },
+                    "bidType": { "type": "string", "enum": ["CPC", "CPM", "CPV", "CPP"] },
+                    "learning": { "type": "boolean" },
+                    "categoryId": { "type": "integer" },
+                    "eCpm": { "type": "number" },
+                    "ctr": { "type": "number" },
+                    "productRecommendationStrategyId": { "type": "integer" },
+                    "productIds": { "type": "array", "items": { "type": "string" } },
+                    "adomain": { "type": "string" },
+                    "advertiser_cost": { "type": "number" },
+                    "rtbSeat": { "type": "string" },
+                    "creativeIndex": { "type": "integer" },
+                    "empLineItemId": { "type": "string" },
+                    "empAdvertiserId": { "type": "string" },
+                    "empOrderId": { "type": "string" },
+                    "empEnvironmentId": { "type": "string" },
+                    "empAdUnitId": { "type": "string" },
+                    "empTopLevelAdUnitId": { "type": "string" },
+                    "audienceTargetingOverrideSegmentId": { "type": "integer" },
+                    "empCreativeId": { "type": "string" },
+                    "partner_creative_id": { "type": "string" },
+                    "chosenCreativesize": {
+                      "type": "object",
+                      "properties": {
+                        "width": { "type": "integer" },
+                        "height": { "type": "integer" }
+                      },
+                      "required": ["width", "height"]
+                    },
+                    "empSiteId": { "type": "string" },
+                    "realtime_audience_segments": { "type": "array", "items": { "type": "integer" } },
+                    "useBillableEvent": { "type": "boolean" },
+                    "viewability": { "type": "number" },
+                    "playRate": { "type": "number" },
+                    "bidder_id": { "type": "integer" },
+                    "exchange_cost": { "type": "number" },
+                    "gross_exchange_cost": { "type": "number" },
+                    "internal_vpaid_tracking_enabled": { "type": "boolean" },
+                    "business_rule_experiment_entry_id": { "type": "integer" },
+                    "bidder_margin_override": { "type": "number" },
+                    "play_rate_prediction_model_category_id": { "type": "integer" },
+                    "default_margin": { "type": "number" },
+                    "margin_type": { "type": "string", "enum": ["DEFAULT", "ZERO", "DEAL", "BUSINESS_RULE_EXPERIMENT", "BIDDER", "DSP_SEAT", "BIDDER_PUBLISHER", "UP_BID", "PUBLISHER_FLOOR_MARGIN_OVERRIDE"] },
+                    "realtime_audience_segment_run_ids": { "type": "array", "items": { "type": "integer" } },
+                    "play_rate_prediction_model_run_id": { "type": "integer" },
+                    "external_ids": {
+                      "type": "object",
+                      "properties": {
+                        "line_item_id": { "type": "string" },
+                        "advertiser_id": { "type": "string" },
+                        "order_id": { "type": "string" },
+                        "creative_id": { "type": "string" },
+                        "environment_id": { "type": "string" },
+                        "ad_unit_id": { "type": "string" },
+                        "top_level_ad_unit_id": { "type": "string" },
+                        "site_id": { "type": "string" },
+                        "campaign_id": { "type": "string" },
+                        "publisher_id": { "type": "string" },
+                        "app_id": { "type": "string" },
+                        "domain": { "type": "string" },
+                        "sub_domain": { "type": "string" },
+                        "site_url": { "type": "string" },
+                        "insertion_order_id": { "type": "string" },
+                        "ad_id": { "type": "string" },
+                        "placement_id": { "type": "string" },
+                        "deal_id": { "type": "string" },
+                        "ad_size": { "type": "string" },
+                        "site_category": { "type": "string" }
+                      }
+                    },
+                    "partner_advertiser_name": { "type": "string" },
+                    "partner_agency_name": { "type": "string" },
+                    "partner_agency_id": { "type": "string" },
+                    "format_optimization_experiment_detailid": { "type": "integer" },
+                    "format_optimization_experiment_feature_set_priority_id": { "type": "integer" },
+                    "format_optimization_status": { "type": "string", "enum": ["NOT_APPLICABLE", "SUCCESS", "NO_RULES_MATCHED", "NO_VALID_FORMAT_FOUND", "NOT_ENABLED"] },
+                    "ds_research_info": { "type": "string" },
+                    "iab_categories": { "type": "array", "items": { "type": "string" } },
+                    "audience_targeting_sample_rate": { "type": "number" },
+                    "ctv_qr_code_config_id": { "type": "integer" },
+                    "bid_internal_auction_price": { "type": "number" },
+                    "advertiser_auction_macro_price": { "type": "number" },
+                    "exchange_post_auction_discount_id": { "type": "integer" },
+                    "applicable_margin": { "type": "number" },
+                    "cost_holdback": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "integer" },
+                          "type": { "type": "string" },
+                          "value": { "type": "number" }
+                        },
+                        "required": ["id", "type", "value"]
+                      }
+                    },
+                    "floor_traffic_group_detail_id": { "type": "integer" },
+                    "floor_experiment_group_id": { "type": "integer" },
+                    "floor_experiment_id": { "type": "integer" },
+                    "floor_experiment_detail_id": { "type": "integer" },
+                    "floor_status": { "type": "string", "enum": ["FLOOR_NOT_APPLICABLE", "FLOOR_SUCCESS", "INVALID_FLOOR_EXPERIMENT", "NO_EXPERIMENT_RULES_MATCHED", "PUBLISHER_DISALLOWS_SMART_FLOORS", "PLACEMENT_PUB_FLOOR_MARGIN_OVERRIDE", "AD_SERVER_DISALLOWS_SMART_FLOORS", "DEAL_DISALLOWS_SMART_FLOORS"] },
+                    "creative_config_collection_element_ids": { "type": "array", "items": { "type": "integer" } },
+                    "creative_format_config_collection_element_ids": { "type": "array", "items": { "type": "integer" } },
+                    "has_matched_user": { "type": "boolean" },
+                    "nformats_traffic_group_detail_id": { "type": "integer" },
+                    "nformats_experiment_group_id": { "type": "integer" },
+                    "nformats_experiment_id": { "type": "integer" },
+                    "nformats_experiment_detail_id": { "type": "integer" },
+                    "nformats_creative_status": { "type": "string", "enum": ["NFORMAT_CREATIVE_NOT_APPLICABLE", "NFORMAT_CREATIVE_NOT_ENABLED", "NFORMAT_CREATIVE_SUCCESS", "NFORMAT_CREATIVE_CONFIG_ELEMENTS_DUPLICATE_ERROR", "NFORMAT_CREATIVE_CONFIG_ELEMENTS_INVALID", "NFORMAT_CREATIVE_EXPERIMENT_INVALID", "NFORMAT_CREATIVE_EXPERIMENT_NO_RULES_MATCHED"] },
+                    "nformats_format_status": { "type": "string", "enum": ["NFORMAT_FORMAT_NOT_APPLICABLE", "NFORMAT_FORMAT_NOT_ENABLED", "NFORMAT_FORMAT_SUCCESS", "NFORMAT_FORMAT_CONFIG_ELEMENTS_DUPLICATE_ERROR", "NFORMAT_FORMAT_CONFIG_ELEMENTS_INVALID", "NFORMAT_FORMAT_EXPERIMENT_INVALID", "NFORMAT_FORMAT_EXPERIMENT_NO_RULES_MATCHED", "NFORMAT_FORMAT_CONFIG_ELEMENTS_COLLIDE_WITH_CREATIVE_ELEMENTS"] },
+                    "floor_experiment_group_allocation_traffic_allocation_percent": { "type": "number" },
+                    "creative_config_constraint_perumation_id": { "type": "array", "items": { "type": "integer" } },
+                    "creative_format_config_constraint_permutation_id": { "type": "array", "items": { "type": "integer" } },
+                    "noformats_experiment_group_allocation_traffic_allocation_percent": { "type": "number" },
+                    "adomains": { "type": "array", "items": { "type": "string" } },
+                    "has_fraud_sensor_tag": { "type": "boolean" },
+                    "duration": { "type": "integer" },
+                    "deal_floor_traffic_group_detail_id": { "type": "integer" },
+                    "deal_floor_experiment_group_id": { "type": "integer" },
+                    "deal_floor_experiment_id": { "type": "integer" },
+                    "deal_floor_experiment_detail_id": { "type": "integer" },
+                    "deal_floor_status": { "type": "string", "enum": ["FLOOR_NOT_APPLICABLE", "FLOOR_SUCCESS", "INVALID_FLOOR_EXPERIMENT", "NO_EXPERIMENT_RULES_MATCHED", "PUBLISHER_DISALLOWS_SMART_FLOORS", "PLACEMENT_PUB_FLOOR_MARGIN_OVERRIDE", "AD_SERVER_DISALLOWS_SMART_FLOORS", "DEAL_DISALLOWS_SMART_FLOORS"] },
+                    "business_rule_experiment_id": { "type": "integer" },
+                    "smart_margin_type": { "type": "string", "enum": ["MAX_MARGIN_FIXED", "MAX_MARGIN_CAPPED", "SMART_MARGIN_CAPPED", "SMART_MARGIN_UNCAPPED"] },
+                    "creative_inventory_targeting_id": { "type": "integer" },
+                    "creative_format_inventory_targeting_id": { "type": "integer" },
+                    "up_bidding_experiment": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "integer" },
+                        "dynamic_margin_target_id": { "type": "integer" },
+                        "minimum_effective_margin": { "type": "number" },
+                        "reduced_effective_margin": { "type": "number" },
+                        "exchange_cost_multiplier": { "type": "number" }
+                      }
+                    }
+                  }
+                }
+              },
+              "exchange_cost": { "type": "number" },
+              "gross_exchange_cost": { "type": "number" },
+              "format_effect_id": { "type": "integer" },
+              "smart_load_distance": { "type": "integer" },
+              "exchangeplacementId": { "type": "string" },
+              "format_test_id": { "type": "integer" },
+              "external_floor": { "type": "number" },
+              "acceptable_sizes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "width": { "type": "integer" },
+                    "height": { "type": "integer" }
+                  },
+                  "required": ["width", "height"]
+                }
+              },
+              "chosenPlacementSize": {
+                "type": "object",
+                "properties": {
+                  "width": { "type": "integer" },
+                  "height": { "type": "integer" }
+                },
+                "required": ["width", "height"]
+              },
+              "interstitial": { "type": "boolean" },
+              "upstream_deal_id": { "type": "string" },
+              "bill_using_visible": { "type": "boolean" },
+              "rewarded": { "type": "boolean" },
+              "using_cpm_cap": { "type": "boolean" },
+              "video_placement_type": { "type": "string", "enum": ["UNDEFINED_VIDEO_PLACEMENT", "IN_STREAM_PLACEMENT", "IN_BANNER_PLACEMENT", "IN_ARTICLE_PLACEMENT", "IN_FEED_PLACEMENT", "FLOATING_PLACEMENT"] },
+              "request_format": { "type": "string", "enum": ["BANNER", "VIDEO", "NATIVE_BANNER", "NATIVE_VIDEO"] },
+              "skadn_nonce": { "type": "string" },
+              "upstream_imp_id": { "type": "string" },
+              "gpid": { "type": "string" },
+              "divid": { "type": "string" },
+              "fraud_sensor_tag": { "type": "boolean" },
+              "video_attributes": {
+                "type": "object",
+                "properties": {
+                  "video_placement_type": { "type": "string", "enum": ["UNDEFINED_VIDEO_PLACEMENT", "IN_STREAM_PLACEMENT", "IN_BANNER_PLACEMENT", "IN_ARTICLE_PLACEMENT", "IN_FEED_PLACEMENT", "FLOATING_PLACEMENT"] },
+                  "video_api": { "type": "string", "enum": ["VPAID", "MRAID", "ORMMA", "OMID"] },
+                  "video_proto": { "type": "string", "enum": ["VAST_1_0", "VAST_2_0", "VAST_3_0", "VAST_4_0"] },
+                  "estimated_player_size_category": { "type": "string", "enum": ["EXTRA_SMALL", "SMALL", "MEDIUM", "LARGE"] },
+                  "skippability": { "type": "string", "enum": ["skippable", "nonskippable", "any"] },
+                  "startDelay": { "type": "string", "enum": ["MID_ROLL", "PRE_ROLL", "GENERIC_MID_ROLL", "GENERIC_POST_ROLL"] },
+                  "min_duration": { "type": "integer" },
+                  "max_duration": { "type": "integer" }
+                }
+              },
+              "request_formats": {
+                "type": "array",
+                "items": { "type": "string", "enum": ["BANNER", "VIDEO", "NATIVE_BANNER", "NATIVE_VIDEO"] }
+              },
+              "upstream_transaction_id": { "type": "string" },
+              "tagid": { "type": "string" },
+              "dfp_ad_unit_code": { "type": "string" },
+              "has_malvertising_defense_tag": { "type": "boolean" },
+              "pod_ad_parent_impression_id": { "type": "integer" }
+            }
+          }
+        },
+        "request": { "$ref": "#/properties/PageViewRequest" },
+        "page_view_id": { "type": "integer" },
+        "publisher_id": { "type": "integer" },
+        "site_id": { "type": "integer" },
+        "processed_ms": { "type": "integer" },
+        "consequent": { "type": "boolean" },
+        "force_invalidation": { "type": "boolean" },
+        "audience_segments": { "type": "array", "items": { "type": "integer" } },
+        "kafkaMetaData": {
+          "type": "object",
+          "properties": {
+            "partition_id": { "type": "integer" },
+            "cluster_id": { "type": "string" },
+            "offset": { "type": "integer" },
+            "timestamp": { "type": "integer" }
+          }
+        },
+        "mg_invalid_traffic": { "type": "boolean" },
+        "mg_prediction_id": { "type": "string" },
+        "mg_reason_code": { "type": "integer" },
+        "mg_response_time": { "type": "integer" },
+        "cmp": { "type": "boolean" },
+        "rtb_throttling_control": { "type": "boolean" },
+        "geodata_response_time": { "type": "integer" },
+        "userdata_response_time": { "type": "integer" },
+        "external_service_overall_response_time": { "type": "integer" },
+        "geodata_response_status": { "type": "string", "enum": ["SUCCESS", "TIMEOUT", "ERROR", "EMPTY_RESPONSE", "SKIPPED", "NA"] },
+        "userdata_response_status": { "type": "string", "enum": ["SUCCESS", "TIMEOUT", "ERROR", "EMPTY_RESPONSE", "SKIPPED", "NA"] },
+        "user_privacy": {
+          "type": "object",
+          "properties": {
+            "opt_out": { "type": "string", "enum": ["TCF", "CCPA", "COOKIE", "IDFA", "GPP"] },
+            "consent_string": { "type": "string" },
+            "consent_string_version": { "type": "integer" },
+            "purpose": { "type": "integer" },
+            "vendors": { "type": "integer" },
+            "vendors_sample": { "type": "integer" },
+            "ccpa_string": { "type": "string" },
+            "legitimate_interests": { "type": "integer" },
+            "special_feature_opt_ins": { "type": "integer" }
+          }
+        },
+        "supply_source": { "type": "string", "enum": ["COP", "PREBID_JS", "PREBID_SERVER", "EBDA", "TAM", "ORTB"] },
+        "business_rule_experiment_id": { "type": "integer" },
+        "liverampidl_response_time": { "type": "integer" },
+        "liveramp_idl_response_status": { "type": "string", "enum": ["SUCCESS", "TIMEOUT", "ERROR", "EMPTY_RESPONSE", "SKIPPED", "NA"] },
+        "format_optimization_experiment_id": { "type": "integer" },
+        "business_rule_traffic_id": { "type": "integer" },
+        "thirty_three_across_response_time": { "type": "integer" },
+        "thirty_three_across_response_status": { "type": "string", "enum": ["SUCCESS", "TIMEOUT", "ERROR", "EMPTY_RESPONSE", "SKIPPED", "NA"] },
+        "extended_id_source": { "type": "array", "items": { "type": "string" } },
+        "rtb_bidfloor_sampling_applied": { "type": "boolean" },
+        "floor_traffic_id": { "type": "integer" },
+        "rtb_partner_id": { "type": "array", "items": { "type": "integer" } },
+        "floor_traffic_allocation_percent": { "type": "number" },
+        "nformats_traffic_id": { "type": "integer" },
+        "nformats_traffic_allocation_percent": { "type": "number" },
+        "floor_traffic_logging_sample_percent": { "type": "number" },
+        "up_bidding_experiment_id": { "type": "integer", "default": 0 },
+        "system_metrics": {
+          "type": "object",
+          "properties": {
+            "heap_used_mb": { "type": "integer" },
+            "heap_used_ratio": { "type": "number" }
+          }
+        },
+        "pmp_deals_process_time_ms": { "type": "integer" }
+      }
+    }
+  }
+}

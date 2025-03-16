@@ -1,0 +1,8 @@
+click_flow/__pycache__/
+click_flow/archive/__pycache__/
+s3d_producer/deh/__pycache__/
+kafka_data
+downloads
+minio
+data
+.idea
