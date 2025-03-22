@@ -2,7 +2,8 @@
 FROM eclipse-temurin:17-jre
 
 # Set environment variables
-ENV KAFKA_VERSION=3.9.0
+ARG KAFKA_VERSION=3.9.0
+ENV KAFKA_VERSION=${KAFKA_VERSION}
 ENV KAFKA_UI_VERSION=0.7.2
 ENV KAFKA_HOME=/home/kafka
 ENV KAFKA_UI_HOME=/home/kafka-ui
@@ -35,6 +36,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 # Copy and extract Kafka tar
 COPY downloads/kafka_2.13-3.9.0.tgz /tmp/kafka.tgz
+RUN ls -lh /tmp/kafka.tgz
+RUN tar --version
 RUN tar -xzf /tmp/kafka.tgz -C /opt && \
     mv /opt/kafka_2.13-${KAFKA_VERSION} ${KAFKA_HOME} && \
     rm /tmp/kafka.tgz
@@ -56,12 +59,12 @@ RUN chown -R $USER_UID:$USER_GID $KAFKA_UI_HOME
 RUN mkdir -p /var/lib/kafka/data && \
   chown -R $USER_UID:$USER_GID /var/lib/kafka/data
 
-# Download and install Nessie
-RUN mkdir -p /nessie && \
-    cd /nessie && \
-    curl -L -o nessie-server.tar.gz https://github.com/projectnessie/nessie/releases/download/nessie-0.60.0/nessie-quarkus-0.60.0-runner.tar.gz && \
-    tar -xzf nessie-server.tar.gz && \
-    rm nessie-server.tar.gz
+## Download and install Nessie
+#RUN mkdir -p /nessie && \
+#    cd /nessie && \
+#    curl -L -o nessie-server.tar.gz https://github.com/projectnessie/nessie/releases/download/nessie-0.60.0/nessie-quarkus-0.60.0-runner.tar.gz && \
+#    tar -xzf nessie-server.tar.gz && \
+#    rm nessie-server.tar.gz
 
 # Create a virtual environment and install dependencies
 RUN python3 -m venv $VENV_PATH/kafka_venv && \
@@ -80,7 +83,7 @@ RUN chown -R $USER_UID:$USER_GID ${VENV_PATH}
 EXPOSE 9092 8765 8080 19120
 
 # Copy startup script
-COPY docker/scripts/start.sh /start.sh
+COPY scripts/start.sh /start.sh
 RUN chmod +x /start.sh
 
 # Set the entrypoint
