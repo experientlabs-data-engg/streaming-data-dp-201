@@ -18,6 +18,20 @@ To avoid this, image layer should not contain any data.
 Or 
 
 
+## From prject root directory run below command to build the Docker Image
+docker build -t kafka-kraft-ui .
+
+docker run -d \
+  -p 9093:9092 \
+  -p 8083:8080 \
+  -p 8768:8765 \
+  -v s3d_producer:/app/s3d_producer \
+  --name kafka-kraft-ui1 \
+  kafka-kraft-ui
+
+
+
+
 
 ps aux | grep "python your_script.py"
 
@@ -26,4 +40,6 @@ kill <PID>
 Need to cleanup kafka_data directory. 
 
 
+sudo lsof -i :9001
+sudo kill <PID>
 

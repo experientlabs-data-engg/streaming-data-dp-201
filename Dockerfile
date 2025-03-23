@@ -46,13 +46,13 @@ RUN tar -xzf /tmp/kafka.tgz -C /opt && \
 RUN chown -R $USER_UID:$USER_GID ${KAFKA_HOME}
 
 # Download Kafka UI JAR file
-#RUN mkdir -p ${KAFKA_UI_HOME} && \
-#    wget https://github.com/provectus/kafka-ui/releases/download/v${KAFKA_UI_VERSION}/kafka-ui-api-v${KAFKA_UI_VERSION}.jar -O ${KAFKA_UI_JAR} && \
-#    chown -R $USER_UID:$USER_GID $KAFKA_UI_HOME
+RUN mkdir -p ${KAFKA_UI_HOME} && \
+    wget https://github.com/provectus/kafka-ui/releases/download/v${KAFKA_UI_VERSION}/kafka-ui-api-v${KAFKA_UI_VERSION}.jar -O ${KAFKA_UI_JAR} && \
+    chown -R $USER_UID:$USER_GID $KAFKA_UI_HOME
 
 # Copy and extract Kafka tar
-COPY downloads/kafka-ui-api-v0.7.2.jar ${KAFKA_UI_JAR}
-RUN chown -R $USER_UID:$USER_GID $KAFKA_UI_HOME
+#COPY downloads/kafka-ui-api-v0.7.2.jar ${KAFKA_UI_JAR}
+#RUN chown -R $USER_UID:$USER_GID $KAFKA_UI_HOME
 
 
 
