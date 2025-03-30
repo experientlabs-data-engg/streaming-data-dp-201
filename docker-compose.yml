@@ -37,13 +37,6 @@ services:
       - minio  # Only if your scripts depend on MinIO
     restart: unless-stopped
 
-#  ui:
-#    build:
-#      context: ui/
-#      dockerfile: Dockerfile
-#    ports:
-#      - "3000:3000"
-
 
 
 

@@ -7,7 +7,6 @@ import logging
 from io import BytesIO
 
 
-
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
