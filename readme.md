@@ -105,7 +105,7 @@ docker run -d \
   -p 9092:9092 \
   -p 8080:8080 \
   -p 8765:8765 \
-  -v /path/to/your/python/programs:/app \
+  -v s3d_simulator/:/app \
   --name kafka-kraft-ui \
   kafka-kraft-ui
 ```
