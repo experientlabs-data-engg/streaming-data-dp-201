@@ -70,7 +70,7 @@ RUN mkdir -p /var/lib/kafka/data && \
 RUN python3 -m venv $VENV_PATH/kafka_venv && \
     $VENV_PATH/kafka_venv/bin/pip install --upgrade pip && \
     $VENV_PATH/kafka_venv/bin/pip install poetry
-COPY s3d_producer/pyproject.toml /home/kafkauser/app/pyproject.toml
+COPY s3d_simulator/pyproject.toml /home/kafkauser/app/pyproject.toml
 
 # Set the working directory
 WORKDIR /home/kafkauser/app

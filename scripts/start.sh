@@ -19,13 +19,13 @@ ${KAFKA_HOME}/bin/kafka-server-start.sh ${KAFKA_HOME}/config/kraft/server.proper
 java -jar ${KAFKA_UI_JAR} --kafka.clusters.0.name=local --kafka.clusters.0.bootstrapServers=localhost:9092 &
 
 # Start Python WebSocket emitter
-#python3 /app/websocket_emitter.py &
-#
-## Start Kafka producer
-#python3 /app/kafka_producer.py &
-#
-## Start Kafka consumer
-#python3 /app/kafka_consumer.py &
+python3 /app/websocket_message_generator.py &
+
+# Start Kafka producer
+python3 /app/kafka_producer.py &
+
+# Start Kafka consumer
+python3 /app/kafka_consumer.py &
 
 # Keep the container running
 tail -f /dev/null

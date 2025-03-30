@@ -9,6 +9,7 @@ if [ "$1" == "start" ]; then
   # Clean the kafka data directory
   echo "Cleaning $kafka_data contents..."
   if [ -d "$kafka_data" ]; then
+    echo "Keeping Kafka Data"
     find "$kafka_data" -mindepth 1 -delete
   else
     echo "$kafka_data does not exist. recreating and setting permissions"

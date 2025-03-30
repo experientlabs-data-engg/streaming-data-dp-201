@@ -1,6 +1,6 @@
-click_flow/__pycache__/
-click_flow/archive/__pycache__/
-s3d_producer/deh/__pycache__/
+click_flow_wip/archive/__pycache__/
+s3d_simulator/deh/__pycache__/
+s3d_simulator/kafka-utils/__pycache__/
 kafka_data
 downloads
 minio
